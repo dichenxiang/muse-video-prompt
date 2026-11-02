@@ -1,0 +1,4 @@
+interface:
+  display_name: "Muse 视频提示词导演"
+  short_description: "将文字创意和参考视频转为详细的视频生成提示词"
+  default_prompt: "使用 $muse-video-prompt 将我的想法或参考视频转成详细的视频生成提示词。"
