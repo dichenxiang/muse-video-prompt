@@ -7,6 +7,7 @@
 - 单场景和单镜头：设计主体结构、空间构图、表演、动作时间线、运镜、光色和声音，并明确画面中需要与不需要出现的内容。
 - 多镜头与分段：规划各片段的中英提示词、首尾帧和角色参考；连续镜头逐段提取真实末帧、继承运动并验收接缝。
 - 参考分析：根据实际看到的图片或视频提取指定的色调、光线或风格；视频反推区分观察、推测和创意补充。
+- 可选自动出片：连接本机 Muse4AI 后提交任务并逐段验收，具体能力以实际环境为准。
 - 质量审查：对提示词进行三轮审查，检查用户意图、时空连续性、模型可读性与中英一致性。
 
 每次生成的实际能力、可用时长以及首尾帧和参考图功能取决于所用产品和界面；提示词与时码不保证模型精确执行。
@@ -30,3 +31,7 @@ python scripts/analyze_video.py <视频文件> --out <新的空目录>
 分镜计划可选用 `python scripts/validate_storyboard.py plan.json` 校验时长与已声明的连续性；JSON 格式见 [分镜工作流](references/storyboard-workflow.md)。该脚本不替代对画面或提示词语义的检查。
 
 连续镜头可使用 `python scripts/continuity_frames.py extract 视频 --last 末帧.png` 提取实际解码末帧，使用 `extract 视频 --first 首帧.png` 提取首帧，再用 `compare 末帧.png 首帧.png` 比较尺寸和 PSNR。需要 FFmpeg、FFprobe；数值不能替代对身份、运动和声音的人工检查，详见 [连续镜头工作流](references/continuity-workflow.md)。
+
+## Muse4AI 自动生成
+
+用户要求生成视频时，可使用已配置的 Muse4AI MCP 服务或本机 REST 接口。Muse4AI 为第三方程序，需要在应用中登录 Muse 并安全配置授权；不需要将密钥发送到聊天。连续镜头使用实际末帧和视频验收；普通参考图未必支持严格首帧锁定。连接与调用步骤见 [Muse4AI 工作流](references/muse4ai-execution.md)。
